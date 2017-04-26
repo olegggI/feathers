@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Feathers Example</title>
+   </head>
+   <body>
+      <h1>Welcome to Feathers</h1>
+      <p>Open up the console in your browser.</p>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/core-js/2.1.4/core.min.."></script>
+      <script type="text/javascript" src="//npmcdn.com/feathers-client@2.0.0/dist/feathers.js"></script>
+      <script type="text/javascript">
+         var host = 'http://localhost:3030';
+         
+         // Set up Feathers client side
+         var app = feathers();
+         // Register hooks module
+         app.configure(feathers.hooks());
+         app.configure(feathers.rest(host).fetch(window.fetch.bind(window)));
+         // Register socket.io
+         // Set up authentication with a store to cache your auth token
+         app.configure(feathers.authentication({ storage: window.localStorage }));
+         // Authenticating using a email and password
+         app.authenticate({
+            strategy: 'local',
+            email: 'admin@feathersjs.com',
+            password: 'admin'
+         }).then(function(result){
+            console.log('Authenticated!', result);
+         }).catch(function(error){
+            console.error('Error authenticating!', error);
+         });
+      </script>
+   </body>
+</html>
