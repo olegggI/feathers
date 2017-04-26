@@ -16,6 +16,7 @@ Getting up and running is as easy as 1, 2, 3.
     ```
     git clone https://github.com/olegggI/feathers.git
     cd feathers
+    npm install
     ```
 
 3. Start your app
